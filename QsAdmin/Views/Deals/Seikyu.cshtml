@@ -60,10 +60,13 @@
                                 @Html.DisplayNameFor(model => model.Number)
                             </th>
                             <th class="">
-                                @Html.DisplayNameFor(model => model.Gokei)
+                                @Html.DisplayNameFor(model => model.HontaiGaku)
                             </th>
                             <th class="">
                                 @Html.DisplayNameFor(model => model.ShohizeiGaku)
+                            </th>
+                            <th class="">
+                                @Html.DisplayNameFor(model => model.Uriage)
                             </th>
                             <th class="">
                                 @Html.DisplayNameFor(model => model.Gensen)
@@ -96,11 +99,14 @@
                                 </td>
                                 <td class="kingakuCol">
                                     <a href="@Url.Action("SeikyuIraiKb", "Deals", new { CustomerId = item.CustomerId, KeijoTsuki = item.KeijoTsuki })">
-                                        @Html.DisplayFor(modelItem => item.Gokei)
+                                        @Html.DisplayFor(modelItem => item.HontaiGaku)
                                     </a>
                                 </td>
                                 <td class="kingakuCol">
                                     @Html.DisplayFor(modelItem => item.ShohizeiGaku)
+                                </td>
+                                <td class="kingakuCol">
+                                    @Html.DisplayFor(modelItem => item.Uriage)
                                 </td>
                                 <td class="kingakuCol">
                                     @Html.DisplayFor(modelItem => item.Gensen)
@@ -111,8 +117,9 @@
                             </tr>
 
                             sumData.Number += item.Number;
-                            sumData.Gokei += item.Gokei;
+                            sumData.HontaiGaku += item.HontaiGaku;
                             sumData.ShohizeiGaku += item.ShohizeiGaku;
+                            sumData.Uriage += item.Uriage;
                             sumData.Gensen += item.Gensen;
                             sumData.SeikyuGaku += item.SeikyuGaku;
                         }
@@ -128,10 +135,13 @@
                                 @Html.DisplayFor(modelItem => sumData.Number)
                             </td>
                             <td class="kingakuCol">
-                                @Html.DisplayFor(modelItem => sumData.Gokei)
+                                @Html.DisplayFor(modelItem => sumData.HontaiGaku)
                             </td>
                             <td class="kingakuCol">
                                 @Html.DisplayFor(modelItem => sumData.ShohizeiGaku)
+                            </td>
+                            <td class="kingakuCol">
+                                @Html.DisplayFor(modelItem => sumData.Uriage)
                             </td>
                             <td class="kingakuCol">
                                 @Html.DisplayFor(modelItem => sumData.Gensen)

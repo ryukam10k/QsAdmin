@@ -298,7 +298,7 @@ namespace QsAdmin.Controllers
                 + "   a.CustomerName,"
                 + "   a.TransferName,"
                 + "   sum(b.Number) as Number,"
-                + "   sum(b.Price * b.Number) as Gokei"
+                + "   sum(b.Price * b.Number) as HontaiGaku"
                 + " from"
                 + "   Customers a left join Deals b"
                 + "   on a.CustomerId = b.CustomerId"
@@ -333,7 +333,7 @@ namespace QsAdmin.Controllers
                         s.CustomerName,
                         s.CustomerShortName,
                         s.Number,
-                        s.Gokei,
+                        s.HontaiGaku,
                         s.ShohizeiGaku,
                         s.Gensen,
                         s.SeikyuGaku
@@ -367,7 +367,7 @@ namespace QsAdmin.Controllers
                         s.CustomerShortName,
                         "売上高",
                         "課税売上8%",
-                        s.Gokei + s.ShohizeiGaku,
+                        s.Uriage,
                         "内税",
                         s.ShohizeiGaku,
                         s.CustomerName,
@@ -407,7 +407,7 @@ namespace QsAdmin.Controllers
                         s.CustomerShortName,
                         "売上高",
                         "課税売上8%",
-                        s.Gokei + s.ShohizeiGaku,
+                        s.Uriage,
                         "内税",
                         s.ShohizeiGaku,
                         s.CustomerName,
@@ -416,7 +416,7 @@ namespace QsAdmin.Controllers
                         "",
                         year + "/" + (int.Parse(month) + 1) + "/" + "15",
                         "三菱東京ＵＦＪ",
-                        s.Gokei + s.ShohizeiGaku
+                        s.HontaiGaku + s.ShohizeiGaku
                     )
                 )
             );
@@ -460,7 +460,7 @@ namespace QsAdmin.Controllers
                 + "   a.DealCategoryName as Himmoku,"
                 + "   b.Price,"
                 + "   sum(b.Number) as Number,"
-                + "   sum(b.Price * b.Number) as Gokei"
+                + "   sum(b.Price * b.Number) as HontaiGaku"
                 + " from"
                 + "   DealCategories a left Join Deals b"
                 + "   on a.DealCategoryId = b.DealCategoryId"

@@ -135,8 +135,8 @@ namespace QsAdmin.Models
         public int Number { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:#,0}", ApplyFormatInEditMode = false)]
-        [DisplayName("合計額")]
-        public int Gokei { get; set; }
+        [DisplayName("本体価格")]
+        public int HontaiGaku { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:#,0}", ApplyFormatInEditMode = false)]
         [DisplayName("消費税額")]
@@ -144,7 +144,20 @@ namespace QsAdmin.Models
         {
             get
             {
-                return Gokei * 0.08;
+                return HontaiGaku * 0.08;
+            }
+            set
+            {
+            }
+        }
+
+        [DisplayFormat(DataFormatString = "{0:#,0}", ApplyFormatInEditMode = false)]
+        [DisplayName("売上高")]
+        public double Uriage
+        {
+            get
+            {
+                return HontaiGaku + ShohizeiGaku;
             }
             set
             {
@@ -157,7 +170,7 @@ namespace QsAdmin.Models
         {
             get
             {
-                return Math.Floor(Gokei * 0.1021);
+                return Math.Floor(HontaiGaku * 0.1021);
             }
             set
             {
@@ -170,7 +183,7 @@ namespace QsAdmin.Models
         {
             get
             {
-                return Gokei + ShohizeiGaku - Gensen;
+                return HontaiGaku + ShohizeiGaku - Gensen;
             }
             set
             {
@@ -191,8 +204,8 @@ namespace QsAdmin.Models
         public int Number { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:#,0}", ApplyFormatInEditMode = false)]
-        [DisplayName("価格")]
-        public int Gokei { get; set; }
+        [DisplayName("本体価格")]
+        public int HontaiGaku { get; set; }
     }
 
 }
