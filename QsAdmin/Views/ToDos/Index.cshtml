@@ -1,0 +1,8 @@
+﻿@model QsAdmin.Models.ToDoView
+
+@{
+    ViewBag.Title = "ToDo";
+}
+
+@Html.Partial("ToDoView", Model.MikanryoToDo)
+@Html.Partial("ToDoViewKanryo", Model.KanryoToDo)

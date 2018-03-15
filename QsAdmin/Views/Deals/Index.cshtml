@@ -1,0 +1,125 @@
+﻿@model IEnumerable<QsAdmin.Models.DealViewModel>
+
+@{
+    ViewBag.Title = "取引管理";
+}
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>取引管理 <small>検索・一覧</small></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li title="取引登録">
+                        <a href=@Url.Action("Create", "Deals") class="dropdown-toggle"><i class="fa fa-plus"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href=@Url.Action("Index", "Customers") class="dropdown-toggle">取引先登録</a>
+                            </li>
+                            <li>
+                                <a href=@Url.Action("Index", "DealCategories") class="dropdown-toggle">取引区分登録</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="table-toolbar">
+
+                    @using (Html.BeginForm("Index", "Deals", FormMethod.Get, new { @class = "form-inline" }))
+                    {
+                        @Html.Label("year", "計上年月:", new { @class = "control-label" })
+                        @Html.DropDownList("year", null, "", htmlAttributes: new { @class = "form-control dateTxt" })
+                        @Html.Label("month", "/", new { })
+                        @Html.DropDownList("month", null, "", htmlAttributes: new { @class = "form-control dateTxt" })
+                        @Html.Label("keyword", "キーワード:", new { @class = "control-label" })
+                        @Html.TextBox("keyword", "", new { @class = "form-control keyword" })
+                        @Html.Label("kanryo", "完了分を含む:", new { @class = "control-label" })
+                        @Html.CheckBox("kanryo")
+                        <div class="pull-right">
+                            <input type="submit" value="検索" class="btn btn-success searchBtn" />
+                        </div>
+                    }
+
+                </div>
+
+                <hr />
+
+                @using (Html.BeginForm("Index", "Deals", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="sshortCol"></th>
+                                <th class="column-title">@Html.DisplayNameFor(model => model.ReceptionDate)</th>
+                                <th class="column-title">@Html.DisplayNameFor(model => model.DealCategoryName)</th>
+                                <th class="column-title">@Html.DisplayNameFor(model => model.Tag)</th>
+                                <th class="column-title">@Html.DisplayNameFor(model => model.CustomerName)</th>
+                                <th class="column-title">@Html.DisplayNameFor(model => model.Number)</th>
+                                <th class="column-title">@Html.DisplayNameFor(model => model.ExistsMemo)</th>
+                                <th class="column-title">@Html.DisplayNameFor(model => model.EndDate)</th>
+                                <th class="column-title">@Html.DisplayNameFor(model => model.KeijoTsuki)</th>
+                                <th class="column-title no-link last">
+                                    <span class="nobr">Action</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                string style = item.IsKanryo() ? "kanryo" : "";
+
+                                <tr class=@style>
+                                    <td class="center">
+                                        @if (!item.IsKanryo())
+                                        {
+                                            <button type="submit" name="endDealId" value=@item.Id class="btn btn-mini" title="完了にする"><i class="fa fa-check"></i></button>
+                                        }
+                                        else
+                                        {
+                                            <span>完了</span>
+                                        }
+                                    </td>
+                                    <td class="">
+                                        @Html.DisplayFor(modelItem => item.ReceptionDate)
+                                    </td>
+                                    <td class="">
+                                        @Html.DisplayFor(modelItem => item.DealCategoryName)
+                                    </td>
+                                    <td class="">
+                                        @Html.DisplayFor(modelItem => item.Tag)
+                                    </td>
+                                    <td class="">
+                                        @Html.DisplayFor(modelItem => item.CustomerName)
+                                    </td>
+                                    <td class="">
+                                        @Html.DisplayFor(modelItem => item.Number)
+                                    </td>
+                                    <td class="">
+                                        @Html.DisplayFor(modelItem => item.ExistsMemo)
+                                    </td>
+                                    <td class="">
+                                        @Html.DisplayFor(modelItem => item.EndDate)
+                                    </td>
+                                    <td class="">
+                                        @Html.DisplayFor(modelItem => item.KeijoTsuki)
+                                    </td>
+                                    <td class="last">
+                                        <a href="@Url.Action("Details", "Deals", new { id = item.Id })">View</a> |
+                                        <a href="@Url.Action("Edit", "Deals", new { id = item.Id })">Edit</a> |
+                                        <a href="@Url.Action("Copy", "Deals", new { id = item.Id })">Copy</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+            </div>
+        </div>
+    </div>
+</div>

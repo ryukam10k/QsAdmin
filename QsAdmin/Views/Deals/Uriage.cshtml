@@ -1,0 +1,51 @@
+﻿@model IEnumerable<QsAdmin.Models.UriageViewModel>
+
+@{
+    ViewBag.Title = "売上管理";
+}
+
+<div class="block">
+    <div class="navbar navbar-inner block-header">
+        <div class="muted pull-left">月別売上</div>
+    </div>
+    <div class="block-content collapse in">
+        <div class="span12">
+
+            <div>
+                <img src="@ViewBag.ChartPath" />
+            </div>
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th class="Uriage__List__nengetsu">
+                            @Html.DisplayNameFor(model => model.Nengetsu)
+                        </th>
+                        <th class="Uriage__List__kensu">
+                            @Html.DisplayNameFor(model => model.Kensu)
+                        </th>
+                        <th class="">
+                            @Html.DisplayNameFor(model => model.Uriage)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nengetsu)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Kensu)
+                            </td>
+                            <td class="kingakuCol">
+                                @Html.DisplayFor(modelItem => item.Uriage)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

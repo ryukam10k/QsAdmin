@@ -1,0 +1,40 @@
+﻿@model QsAdmin.Models.DealCategory
+
+@{
+    ViewBag.Title = "取引区分管理";
+}
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>取引区分管理 <small>詳細</small></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.DealCategoryName)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.DealCategoryName)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.BasicPrice)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.BasicPrice)
+                    </dd>
+
+                </dl>
+            </div>
+            <p>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.DealCategoryId }) |
+                @Html.ActionLink("Back to List", "Index")
+            </p>
+        </div>
+    </div>
+</div>

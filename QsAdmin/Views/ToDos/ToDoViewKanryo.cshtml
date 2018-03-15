@@ -1,0 +1,65 @@
+﻿@model IEnumerable<QsAdmin.Models.KanryoToDoView>
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>ToDo <small>完了済</small></h2>
+                <ul class="nav navbar-right panel_toolbox"></ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+
+                @using (Html.BeginForm("Index", "ToDos", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="sshortCol">
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.KanryoDate)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Title)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.TantoshaName)
+                                </th>
+                                <th>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr class="kanryo">
+                                    <td>
+                                        <button type="submit" name="returnToDoId" value=@item.Id class="btn btn-mini" title="未完了に戻す"><i class="fa fa-reply"></i></button>
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.KanryoDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Title)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TantoshaName)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+
+                @Html.ActionLink("more...", "ToDoViewKanryo", new { })
+            </div>
+        </div>
+    </div>    
+</div>

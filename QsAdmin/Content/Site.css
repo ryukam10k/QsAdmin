@@ -1,0 +1,41 @@
+﻿/* テーブル内リンク */
+.row a {
+    color: dodgerblue !important;
+}
+
+/* タイトル行内のアイコン */
+.x_title i {
+    width: 25px;
+    text-align: center;
+}
+
+/* 操作エリアのラベル */
+.table-toolbar label {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+/* 日付 */
+.dateTxt {
+    width: 90px !important;
+}
+
+/* 金額 */
+.kingakuCol {
+    text-align: right !important;
+}
+
+/* キーワード */
+.keyword {
+    width: 120px !important;
+}
+
+/* 完了行 */
+.kanryo {
+    background-color: #f5f5f5;
+    color: gray;
+}
+
+.center {
+    text-align: center;
+}

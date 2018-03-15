@@ -1,0 +1,41 @@
+﻿@model QsAdmin.Models.ToDo
+
+@{
+    ViewBag.Title = "ToDo";
+}
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>ToDo <small>編集</small></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+
+                @using (Html.BeginForm("Create", "ToDos", new { }, FormMethod.Post, new { @class = "" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        @Html.Partial("_ToDoForm")
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-6 col-sm-6 col-xs-12">
+                                <input type="submit" class="btn btn-success" value="保存" />
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div>
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

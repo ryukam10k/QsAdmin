@@ -1,0 +1,142 @@
+﻿@model IEnumerable<QsAdmin.Models.ReportViewModel>
+
+@{
+    ViewBag.Title = "取引管理";
+}
+
+<div class="row">
+    <div class="col-md-12 col-sm-6 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>取引管理 <small>月別売上高（グラフ）</small></h2>
+                <ul class="nav navbar-right panel_toolbox"></ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="table-toolbar">
+
+                    @using (Html.BeginForm("Report", "Deals", FormMethod.Get, new { @class = "form-inline" }))
+                    {
+                        @Html.Label("year", "計上年月:", new { @class = "control-label" })
+                        @Html.DropDownList("year", null, "", htmlAttributes: new { @class = "form-control dateTxt" })
+                        @Html.Label("month", "/", new { })
+                        @Html.DropDownList("month", null, "", htmlAttributes: new { @class = "form-control dateTxt" })
+                        @Html.Label("month", "まで", new { })
+                        @Html.TextBox("range", 12, new { @class = "form-control dateTxt" })
+                        @Html.Label("month", "ヵ月分", new { })
+                        <div class="pull-right">
+                            <input type="submit" value="検索" class="btn btn-success searchBtn" />
+                        </div>
+                    }
+                </div>
+
+                <hr />
+                <div class="chart-container" style="position: relative; max-width: 1000px;">
+                    <canvas id="uriageChart" ></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>取引管理 <small>月別売上高（一覧）</small></h2>
+                <ul class="nav navbar-right panel_toolbox"></ul>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="x_content">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th class="column-title">@Html.DisplayNameFor(model => model.Nengetsu)</th>
+                            <th class="column-title">@Html.DisplayNameFor(model => model.Number)</th>
+                            <th class="column-title">@Html.DisplayNameFor(model => model.Uriage)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int sumNumber = 0;
+                            int sumUriage = 0;
+                        }
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="">
+                                    @Html.DisplayFor(modelItem => item.Nengetsu)
+                                </td>
+                                <td class="">
+                                    @Html.DisplayFor(modelItem => item.Number)
+                                </td>
+                                <td class="kingakuCol">
+                                    @Html.DisplayFor(modelItem => item.Uriage)
+                                </td>
+                            </tr>
+
+                            sumNumber += item.Number;
+                            sumUriage += item.Uriage;
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td class="">合計</td>
+                            <td class="">@sumNumber</td>
+                            <td class="kingakuCol">@sumUriage.ToString("#,0")</td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@{
+    string months = "";
+    string uriages = "";
+}
+
+@foreach (var item in Model)
+{
+    months += "'" + item.Nengetsu + "',";
+    uriages += item.Uriage + ",";
+}
+
+@section Scripts {
+    <!-- Chart.js -->
+    <script src="~/Content/vendors/Chart.js/dist/Chart.min.js"></script>
+
+    <script type="text/javascript">
+        if ($('#uriageChart').length) {
+
+            var ctx = document.getElementById("uriageChart");
+            var mybarChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: [@Html.Raw(months)],
+                    datasets: [{
+                        label: '売上',
+                        backgroundColor: "#26B99A",
+                        data: [@Html.Raw(uriages)]
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    layout: {
+                        responsive: false
+                    }
+                }
+            });
+
+        }
+    </script>
+}

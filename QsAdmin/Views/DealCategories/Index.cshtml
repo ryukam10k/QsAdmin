@@ -1,0 +1,60 @@
+﻿@model IEnumerable<QsAdmin.Models.DealCategory>
+
+@{
+    ViewBag.Title = "取引区分管理";
+}
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>取引区分管理 <small>検索・一覧</small></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li title="取引区分登録">
+                        <a href=@Url.Action("Create", "DealCategories") class="dropdown-toggle"><i class="fa fa-plus"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DealCategoryId)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DealCategoryName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.BasicPrice)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DealCategoryId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DealCategoryName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.BasicPrice)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.DealCategoryId }) |
+                                    @Html.ActionLink("Details", "Details", new { id = item.DealCategoryId }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.DealCategoryId })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

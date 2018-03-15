@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="">
+    <div class="row top_tiles">
+        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <a href=@Url.Action("Index", "ToDos")>
+                <div class="tile-stats">
+                    <div class="icon"><i class="fa fa-check-square-o"></i></div>
+                    <div class="count">@ViewBag._ToDoCount</div>
+                    <h3>ToDo</h3>
+                    <p>未完了のToDo数</p>
+                </div>
+            </a>
+        </div>
+        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <a href=@Url.Action("Index", "Deals")>
+                <div class="tile-stats">
+                    <div class="icon"><i class="fa fa-bar-chart"></i></div>
+                    <div class="count">@ViewBag._DealsCount</div>
+                    <h3>取引</h3>
+                    <p>未完了の取引数</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>

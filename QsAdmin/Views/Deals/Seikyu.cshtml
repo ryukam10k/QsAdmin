@@ -1,0 +1,170 @@
+﻿@using QsAdmin.Models
+@model IEnumerable<QsAdmin.Models.SeikyuViewModel>
+
+@{
+    ViewBag.Title = "取引管理";
+    SeikyuViewModel sumData = new SeikyuViewModel();
+}
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>取引管理 <small>取引先別売上照会</small></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="table-toolbar">
+
+                    @using (Html.BeginForm("Seikyu", "Deals", FormMethod.Get, new { @class = "form-inline" }))
+                    {
+                        @Html.Label("year", "計上年月:", new { @class = "control-label" })
+                        @Html.DropDownList("year", null, htmlAttributes: new { @class = "form-control dateTxt" })
+                        @Html.Label("month", "/", new { })
+                        @Html.DropDownList("month", null, htmlAttributes: new { @class = "form-control dateTxt" })
+                        <div class="btn-group pull-right">
+                            <button data-toggle="dropdown" class="btn dropdown-toggle">CSV出力 <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("通常", "SeikyuList", new { year = ViewBag._Year, month = ViewBag._Month })</li>
+                                <li>@Html.ActionLink("Freee形式", "Deals", new { year = ViewBag._Year, month = ViewBag._Month })</li>
+                                <li>@Html.ActionLink("Freee形式（決済済）", "Deals2", new { year = ViewBag._Year, month = ViewBag._Month })</li>
+                            </ul>
+                        </div>
+                        <div class="pull-right">
+                            <input type="submit" value="検索" class="btn btn-success searchBtn" />
+                        </div>
+                    }
+                </div>
+
+                <hr />
+
+                <table class="table table-bordered">
+
+                    <thead>
+                        <tr>
+                            <th class="">
+                                @Html.DisplayNameFor(model => model.CustomerId)
+                            </th>
+                            <th class="">
+                                @Html.DisplayNameFor(model => model.CustomerName)
+                            </th>
+                            <th class="">
+                                @Html.DisplayNameFor(model => model.CustomerShortName)
+                            </th>
+                            <th class="">
+                                @Html.DisplayNameFor(model => model.TransferName)
+                            </th>
+                            <th class="">
+                                @Html.DisplayNameFor(model => model.Number)
+                            </th>
+                            <th class="">
+                                @Html.DisplayNameFor(model => model.Gokei)
+                            </th>
+                            <th class="">
+                                @Html.DisplayNameFor(model => model.ShohizeiGaku)
+                            </th>
+                            <th class="">
+                                @Html.DisplayNameFor(model => model.Gensen)
+                            </th>
+                            <th class="">
+                                @Html.DisplayNameFor(model => model.SeikyuGaku)
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                @Html.HiddenFor(modelItem => item.KeijoTsuki)
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CustomerId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CustomerName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CustomerShortName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TransferName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Number)
+                                </td>
+                                <td class="kingakuCol">
+                                    <a href="@Url.Action("SeikyuIraiKb", "Deals", new { CustomerId = item.CustomerId, KeijoTsuki = item.KeijoTsuki })">
+                                        @Html.DisplayFor(modelItem => item.Gokei)
+                                    </a>
+                                </td>
+                                <td class="kingakuCol">
+                                    @Html.DisplayFor(modelItem => item.ShohizeiGaku)
+                                </td>
+                                <td class="kingakuCol">
+                                    @Html.DisplayFor(modelItem => item.Gensen)
+                                </td>
+                                <td class="kingakuCol">
+                                    @Html.DisplayFor(modelItem => item.SeikyuGaku)
+                                </td>
+                            </tr>
+
+                            sumData.Number += item.Number;
+                            sumData.Gokei += item.Gokei;
+                            sumData.ShohizeiGaku += item.ShohizeiGaku;
+                            sumData.Gensen += item.Gensen;
+                            sumData.SeikyuGaku += item.SeikyuGaku;
+                        }
+                    </tbody>
+
+                    <tfoot>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>合計</td>
+                            <td class="">
+                                @Html.DisplayFor(modelItem => sumData.Number)
+                            </td>
+                            <td class="kingakuCol">
+                                @Html.DisplayFor(modelItem => sumData.Gokei)
+                            </td>
+                            <td class="kingakuCol">
+                                @Html.DisplayFor(modelItem => sumData.ShohizeiGaku)
+                            </td>
+                            <td class="kingakuCol">
+                                @Html.DisplayFor(modelItem => sumData.Gensen)
+                            </td>
+                            <td class="kingakuCol">
+                                @Html.DisplayFor(modelItem => sumData.SeikyuGaku)
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- モーダルサンプル
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Large Modal</button>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <p>This is a large modal.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+-->

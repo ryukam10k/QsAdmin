@@ -1,0 +1,67 @@
+﻿@model IEnumerable<QsAdmin.Models.MikanryoToDoView>
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>ToDo <small>未完了</small></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li title="ToDo登録">
+                        <a href=@Url.Action("Create", "ToDos") class="dropdown-toggle"><i class="fa fa-plus"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+
+                @using (Html.BeginForm("Index", "ToDos", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="sshortCol">
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ShimekiriDate)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Title)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.TantoshaName)
+                                </th>
+                                <th>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <button type="submit" name="kanryoToDoId" value=@item.Id class="btn btn-mini" title="完了にする"><i class="fa fa-check"></i></button>
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ShimekiriDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Title)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TantoshaName)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+            </div>
+        </div>
+    </div>
+</div>

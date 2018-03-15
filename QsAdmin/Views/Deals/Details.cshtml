@@ -1,0 +1,105 @@
+﻿@model QsAdmin.Models.Deal
+
+@{
+    ViewBag.Title = "取引管理";
+}
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>取引管理 <small>詳細</small></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.AccountId)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Account.Id)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Customer.CustomerName)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Customer.CustomerName)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.DealCategory.DealCategoryName)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.DealCategory.DealCategoryName)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Tag)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Tag)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Price)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Price)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Number)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Number)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Memo)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Memo)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ReceptionDate)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.ReceptionDate)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.EndDate)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.EndDate)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.KeijoTsuki)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.KeijoTsuki)
+                    </dd>
+
+                </dl>
+            </div>
+            <p>
+                @Html.ActionLink("Back to List", "Index") |
+                @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = Model.Id })
+            </p>
+        </div>
+    </div>
+</div>

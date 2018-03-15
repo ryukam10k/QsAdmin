@@ -1,0 +1,126 @@
+﻿@model QsAdmin.Models.ApplicationUser
+
+@{
+    ViewBag.Title = "アカウント管理";
+}
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>アカウント管理 <small>削除</small></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+
+                <p>削除しますか？</p>
+
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Email)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.EmailConfirmed)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.EmailConfirmed)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.PasswordHash)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.PasswordHash)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SecurityStamp)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.SecurityStamp)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.PhoneNumber)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.PhoneNumber)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.PhoneNumberConfirmed)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.PhoneNumberConfirmed)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.TwoFactorEnabled)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.TwoFactorEnabled)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.LockoutEndDateUtc)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.LockoutEndDateUtc)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.LockoutEnabled)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.LockoutEnabled)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.AccessFailedCount)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.AccessFailedCount)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.UserName)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.UserName)
+                    </dd>
+
+                </dl>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="ln_solid"></div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                            <input type="submit" value="削除" class="btn btn-default" />
+                        </div>
+                    </div>
+                }
+            </div>
+            <p>
+                @Html.ActionLink("Back to List", "Index")
+            </p>
+        </div>
+    </div>
+</div>

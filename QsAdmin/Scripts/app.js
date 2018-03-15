@@ -1,0 +1,4 @@
+﻿
+$(function () {
+    $('.cal').datetimepicker();
+});

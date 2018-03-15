@@ -1,0 +1,78 @@
+﻿@model QsAdmin.Models.ToDo
+
+@{
+    ViewBag.Title = "ToDo";
+}
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>ToDo <small>削除</small></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+
+                <p>削除しますか？</p>
+
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.AccountId)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.AccountId)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Title)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Title)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Description)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ShimekiriDate)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.ShimekiriDate)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.KanryoDate)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.KanryoDate)
+                    </dd>
+
+                </dl>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="ln_solid"></div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                            <input type="submit" value="削除" class="btn btn-default" />
+                        </div>
+                    </div>
+                }
+            </div>
+            <p>
+                @Html.ActionLink("Back to List", "Index")
+            </p>
+        </div>
+    </div>
+</div>
