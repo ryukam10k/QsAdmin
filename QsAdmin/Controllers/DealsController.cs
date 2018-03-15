@@ -311,7 +311,7 @@ namespace QsAdmin.Controllers
                 + "   a.CustomerName,"
                 + "   a.TransferName"
                 + " order by"
-                + "   a.CustomerId"
+                + "   a.TransferName"
                 );
 
             return seikyus;
