@@ -54,13 +54,17 @@
                         <tr>
                             <th class="column-title">@Html.DisplayNameFor(model => model.Nengetsu)</th>
                             <th class="column-title">@Html.DisplayNameFor(model => model.Number)</th>
+                            <th class="column-title">@Html.DisplayNameFor(model => model.HontaiGaku)</th>
+                            <th class="column-title">@Html.DisplayNameFor(model => model.ShohizeiGaku)</th>
                             <th class="column-title">@Html.DisplayNameFor(model => model.Uriage)</th>
                         </tr>
                     </thead>
                     <tbody>
                         @{
                             int sumNumber = 0;
-                            int sumUriage = 0;
+                            int sumHontaiGaku = 0;
+                            decimal sumShohizei = 0;
+                            decimal sumUriage = 0;
                         }
                         @foreach (var item in Model)
                         {
@@ -72,11 +76,19 @@
                                     @Html.DisplayFor(modelItem => item.Number)
                                 </td>
                                 <td class="kingakuCol">
+                                    @Html.DisplayFor(modelItem => item.HontaiGaku)
+                                </td>
+                                <td class="kingakuCol">
+                                    @Html.DisplayFor(modelItem => item.ShohizeiGaku)
+                                </td>
+                                <td class="kingakuCol">
                                     @Html.DisplayFor(modelItem => item.Uriage)
                                 </td>
                             </tr>
 
                             sumNumber += item.Number;
+                            sumHontaiGaku += item.HontaiGaku;
+                            sumShohizei += item.ShohizeiGaku;
                             sumUriage += item.Uriage;
                         }
                     </tbody>
@@ -84,6 +96,8 @@
                         <tr>
                             <td class="">合計</td>
                             <td class="">@sumNumber</td>
+                            <td class="kingakuCol">@sumHontaiGaku.ToString("#,0")</td>
+                            <td class="kingakuCol">@sumShohizei.ToString("#,0")</td>
                             <td class="kingakuCol">@sumUriage.ToString("#,0")</td>
                         </tr>
                     </tfoot>

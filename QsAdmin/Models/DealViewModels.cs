@@ -110,8 +110,17 @@ namespace QsAdmin.Models
         public int Number { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:#,0}", ApplyFormatInEditMode = false)]
-        [DisplayName("売上")]
-        public int Uriage { get; set; }
+        [DisplayName("本体価格")]
+        public int HontaiGaku { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:#,0}", ApplyFormatInEditMode = false)]
+        [DisplayName("消費税額")]
+        public decimal ShohizeiGaku { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:#,0}", ApplyFormatInEditMode = false)]
+        [DisplayName("売上高")]
+        public decimal Uriage { get; set; }
+
     }
 
 
