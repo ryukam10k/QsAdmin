@@ -27,6 +27,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -189,6 +190,10 @@
     <Compile Include="Migrations\201803150437180_AddWebLink.cs" />
     <Compile Include="Migrations\201803150437180_AddWebLink.Designer.cs">
       <DependentUpon>201803150437180_AddWebLink.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803210055036_AddClosingDate.cs" />
+    <Compile Include="Migrations\201803210055036_AddClosingDate.Designer.cs">
+      <DependentUpon>201803210055036_AddClosingDate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -723,6 +728,9 @@
     <EmbeddedResource Include="Migrations\201803150437180_AddWebLink.resx">
       <DependentUpon>201803150437180_AddWebLink.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803210055036_AddClosingDate.resx">
+      <DependentUpon>201803210055036_AddClosingDate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -739,7 +747,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>51873</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

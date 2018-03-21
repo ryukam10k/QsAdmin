@@ -27,6 +27,9 @@ namespace QsAdmin.Models
         [DisplayName("振込名")]
         public string TransferName { get; set; }
 
+        [DisplayName("締日")]
+        public int ClosingDate { get; set; }
+
         [DataType(DataType.MultilineText)]
         [DisplayName("メモ")]
         public string Memo { get; set; }
