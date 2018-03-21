@@ -30,6 +30,9 @@ namespace QsAdmin.Models
         [DisplayName("締日")]
         public int ClosingDate { get; set; }
 
+        [DisplayName("源泉徴収フラグ")]
+        public bool TaxWithholdingFlag { get; set; }
+
         [DataType(DataType.MultilineText)]
         [DisplayName("メモ")]
         public string Memo { get; set; }
