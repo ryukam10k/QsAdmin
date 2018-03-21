@@ -45,7 +45,7 @@ namespace QsAdmin.Controllers
         // 詳細については、http://go.microsoft.com/fwlink/?LinkId=317598 を参照してください。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CustomerId,CustomerName,CustomerShortName,GroupName,CompanyName,TransferName,Memo,DeleteFlag")] Customer customer)
+        public ActionResult Create([Bind(Include = "CustomerId,CustomerName,CustomerShortName,GroupName,CompanyName,TransferName,ClosingDate,Memo,DeleteFlag")] Customer customer)
         {
             if (ModelState.IsValid)
             {
@@ -77,7 +77,7 @@ namespace QsAdmin.Controllers
         // 詳細については、http://go.microsoft.com/fwlink/?LinkId=317598 を参照してください。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CustomerId,CustomerName,CustomerShortName,GroupName,CompanyName,TransferName,Memo,DeleteFlag")] Customer customer)
+        public ActionResult Edit([Bind(Include = "CustomerId,CustomerName,CustomerShortName,GroupName,CompanyName,TransferName,ClosingDate,Memo,DeleteFlag")] Customer customer)
         {
             if (ModelState.IsValid)
             {

@@ -39,6 +39,9 @@
                                 @Html.DisplayNameFor(model => model.TransferName)
                             </th>
                             <th>
+                                @Html.DisplayNameFor(model => model.ClosingDate)
+                            </th>
+                            <th>
                                 @Html.DisplayNameFor(model => model.Memo)
                             </th>
                             <th>
@@ -50,37 +53,40 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.CustomerId)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.CustomerName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.CustomerShortName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.GroupName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.CompanyName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.TransferName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Memo)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.DeleteFlag)
-                                </td>
-                                <td>
-                                    @Html.ActionLink("Edit", "Edit", new { id = item.CustomerId }) |
-                                    @Html.ActionLink("Details", "Details", new { id = item.CustomerId }) |
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.CustomerId })
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CustomerId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CustomerName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CustomerShortName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.GroupName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CompanyName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TransferName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ClosingDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Memo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DeleteFlag)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.CustomerId }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.CustomerId }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.CustomerId })
+                            </td>
+                        </tr>
                         }
                     </tbody>
                 </table>

@@ -61,7 +61,13 @@ namespace QsAdmin.Models
         /// <returns></returns>
         public string GetKeijoTsuki()
         {
-            const int Shimebi = 20;
+            var date = DateTime.Now;
+            int Shimebi = DateTime.DaysInMonth(date.Year, date.Month);
+
+            if (Customer != null && Customer.ClosingDate != 0)
+            {
+                Shimebi = Customer.ClosingDate;
+            }
 
             DateTime _EndDate = DateTime.Now;
 
