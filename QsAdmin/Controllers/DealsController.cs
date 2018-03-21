@@ -299,6 +299,7 @@ namespace QsAdmin.Controllers
                 + "   a.CustomerShortName,"
                 + "   a.CustomerName,"
                 + "   a.TransferName,"
+                + "   a.TaxWithholdingFlag,"
                 + "   sum(b.Number) as Number,"
                 + "   sum(b.Price * b.Number) as HontaiGaku"
                 + " from"
@@ -311,7 +312,8 @@ namespace QsAdmin.Controllers
                 + "   a.CustomerId,"
                 + "   a.CustomerShortName,"
                 + "   a.CustomerName,"
-                + "   a.TransferName"
+                + "   a.TransferName,"
+                + "   a.TaxWithholdingFlag"
                 + " order by"
                 + "   a.TransferName"
                 );

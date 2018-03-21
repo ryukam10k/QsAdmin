@@ -140,6 +140,8 @@ namespace QsAdmin.Models
         [DisplayName("振込名")]
         public string TransferName { get; set; }
 
+        public bool TaxWithholdingFlag { get; set; }
+
         [DisplayName("件数")]
         public int Number { get; set; }
 
@@ -179,7 +181,7 @@ namespace QsAdmin.Models
         {
             get
             {
-                return Math.Floor(HontaiGaku * 0.1021);
+                return TaxWithholdingFlag ? Math.Floor(HontaiGaku * 0.1021) : 0;
             }
             set
             {
