@@ -221,9 +221,9 @@ namespace QsAdmin.Models
 
     public class SeachCondition
     {
-        public int Year { get; set; }
+        public int? Year { get; set; }
 
-        public int Month { get; set; }
+        public int? Month { get; set; }
 
         public bool Kanryo { get; set; }
 
@@ -231,16 +231,16 @@ namespace QsAdmin.Models
 
         public SeachCondition(int? _year, int? _month, bool? _kanryo, string _keyword)
         {
-            Year = _year != null ? (int)_year : DateTime.Now.Year;
-            Month = _month != null ? (int)_month : DateTime.Now.Month;
+            Year = _year;
+            Month = _month;
             Kanryo = _kanryo != null ? (bool)_kanryo : false;
             Keyword = _keyword;
         }
 
         public SeachCondition()
         {
-            Year = DateTime.Now.Year;
-            Month = DateTime.Now.Month;
+            Year = null;
+            Month = null;
             Kanryo = false;
             Keyword = "";
         }

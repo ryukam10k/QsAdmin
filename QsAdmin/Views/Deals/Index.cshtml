@@ -32,6 +32,7 @@
 
                     @using (Html.BeginForm("Index", "Deals", FormMethod.Get, new { @class = "form-inline" }))
                     {
+                        <input type="hidden" name="seachFlag" value="1"/>
                         @Html.Label("year", "計上年月:", new { @class = "control-label" })
                         @Html.DropDownList("year", null, "", htmlAttributes: new { @class = "form-control dateTxt" })
                         @Html.Label("month", "/", new { })

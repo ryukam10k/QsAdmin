@@ -47,18 +47,24 @@ namespace QsAdmin.Models
                          });
 
             bool kanryo = condition.Kanryo;
-            string year = condition.Year.ToString();
-            string month = condition.Month.ToString();
+            int? year = condition.Year;
+            int? month = condition.Month;
             string keyword = condition.Keyword;
 
             // 完了分
             if (kanryo)
             {
-                // 計上年
-                deals = deals.Where(a => a.KeijoTsuki.Substring(0, 4) == year || a.KeijoTsuki == null);
-                // 計上月
-                string month2 = month.PadLeft(2, '0');
-                deals = deals.Where(a => a.KeijoTsuki.Substring(5, 2) == month2 || a.KeijoTsuki == null);
+                if (year != null)
+                {
+                    // 計上年
+                    deals = deals.Where(a => a.KeijoTsuki.Substring(0, 4) == year.ToString() || a.KeijoTsuki == null);
+                }
+                if (month != null)
+                {
+                    // 計上月
+                    string month2 = month.ToString().PadLeft(2, '0');
+                    deals = deals.Where(a => a.KeijoTsuki.Substring(5, 2) == month2 || a.KeijoTsuki == null);
+                }
             }
             else
             {
@@ -119,7 +125,7 @@ namespace QsAdmin.Models
             }
         }
 
-        public IEnumerable<SelectListItem> GetYearOptions(int selectedValue)
+        public IEnumerable<SelectListItem> GetYearOptions(int? selectedValue)
         {
             // 直近の 5 年を選択肢として取得する。
             return Enumerable
@@ -132,7 +138,7 @@ namespace QsAdmin.Models
                 });
         }
 
-        public IEnumerable<SelectListItem> GetMonthOptions(int selectedValue)
+        public IEnumerable<SelectListItem> GetMonthOptions(int? selectedValue)
         {
             return Enumerable
                 .Range(1, 12)

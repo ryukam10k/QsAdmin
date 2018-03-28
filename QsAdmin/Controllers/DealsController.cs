@@ -4,16 +4,11 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using QsAdmin.Models;
 using Microsoft.AspNet.Identity;
 using System.Text;
-using System.Web.Helpers;
 using WebGrease.Css.Extensions;
-using System.Globalization;
-using System.Data.Entity.SqlServer;
-using Microsoft.AspNet.Identity.Owin;
 
 namespace QsAdmin.Controllers
 {
@@ -21,11 +16,11 @@ namespace QsAdmin.Controllers
     {
         private DealManager m = new DealManager();
 
-        public ActionResult Index(int? year, int? month, bool? kanryo, string keyword, int? endDealId)
+        public ActionResult Index(int? seachFlag, int? year, int? month, bool? kanryo, string keyword, int? endDealId)
         {
             SeachCondition condition = new SeachCondition(year, month, kanryo, keyword);
 
-            if (Session["DealSearch"] != null && year == null)
+            if (Session["DealSearch"] != null && seachFlag == null)
             {
                 condition = (SeachCondition)Session["DealSearch"];
             }
