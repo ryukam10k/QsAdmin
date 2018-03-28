@@ -17,7 +17,7 @@ namespace QsAdmin.Controllers
 
             // 未完了取引数取得
             DealManager m2 = new DealManager();
-            ViewBag._DealsCount = m2.GetDealList(null, null, false, null).Count();
+            ViewBag._DealsCount = m2.GetDealList(new SeachCondition()).Count();
 
             return View();
         }

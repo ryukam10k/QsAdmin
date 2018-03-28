@@ -21,16 +21,26 @@ namespace QsAdmin.Controllers
     {
         private DealManager m = new DealManager();
 
-        public ActionResult Index(string year, string month, bool? kanryo, string keyword, int? endDealId)
+        public ActionResult Index(int? year, int? month, bool? kanryo, string keyword, int? endDealId)
         {
+            SeachCondition condition = new SeachCondition(year, month, kanryo, keyword);
+
+            if (Session["DealSearch"] != null && year == null)
+            {
+                condition = (SeachCondition)Session["DealSearch"];
+            }
+
             // 完了
             m.EndDeal(endDealId);
 
             // 取引リスト取得
-            List<DealViewModel> deals = m.GetDealList(year, month, kanryo, keyword);
+            List<DealViewModel> deals = m.GetDealList(condition);
+            Session["DealSearch"] = condition;
 
-            ViewBag.year = m.GetYearOptions(DateTime.Now.Year);
-            ViewBag.month = m.GetMonthOptions(DateTime.Now.Month);
+            ViewBag.year = m.GetYearOptions(condition.Year);
+            ViewBag.month = m.GetMonthOptions(condition.Month);
+            ViewBag.keyword = condition.Keyword;
+            ViewBag.Kanryo = condition.Kanryo;
 
             return View(deals.ToList());
         }

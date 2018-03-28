@@ -26,7 +26,7 @@ namespace QsAdmin.Models
             }
         }
 
-        public List<DealViewModel> GetDealList(string year, string month, bool? kanryo, string keyword)
+        public List<DealViewModel> GetDealList(SeachCondition condition)
         {
             var deals = (from a in db.Deals
                          from b in db.DealCategories.Where(x => x.DealCategoryId == a.DealCategoryId).DefaultIfEmpty()
@@ -46,22 +46,19 @@ namespace QsAdmin.Models
                              KeijoTsuki = a.KeijoTsuki
                          });
 
+            bool kanryo = condition.Kanryo;
+            string year = condition.Year.ToString();
+            string month = condition.Month.ToString();
+            string keyword = condition.Keyword;
+
             // 完了分
-            if (kanryo.HasValue && kanryo.Value)
+            if (kanryo)
             {
-                if (!string.IsNullOrEmpty(year))
-                {
-                    // 計上年
-                    deals = deals.Where(a => a.KeijoTsuki.Substring(0, 4) == year || a.KeijoTsuki == null);
-                }
-
-                if (!string.IsNullOrEmpty(month))
-                {
-                    // 計上月
-                    string month2 = month.PadLeft(2, '0');
-                    deals = deals.Where(a => a.KeijoTsuki.Substring(5, 2) == month2 || a.KeijoTsuki == null);
-                }
-
+                // 計上年
+                deals = deals.Where(a => a.KeijoTsuki.Substring(0, 4) == year || a.KeijoTsuki == null);
+                // 計上月
+                string month2 = month.PadLeft(2, '0');
+                deals = deals.Where(a => a.KeijoTsuki.Substring(5, 2) == month2 || a.KeijoTsuki == null);
             }
             else
             {

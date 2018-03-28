@@ -219,4 +219,31 @@ namespace QsAdmin.Models
         public int HontaiGaku { get; set; }
     }
 
+    public class SeachCondition
+    {
+        public int Year { get; set; }
+
+        public int Month { get; set; }
+
+        public bool Kanryo { get; set; }
+
+        public string Keyword { get; set; }
+
+        public SeachCondition(int? _year, int? _month, bool? _kanryo, string _keyword)
+        {
+            Year = _year != null ? (int)_year : DateTime.Now.Year;
+            Month = _month != null ? (int)_month : DateTime.Now.Month;
+            Kanryo = _kanryo != null ? (bool)_kanryo : false;
+            Keyword = _keyword;
+        }
+
+        public SeachCondition()
+        {
+            Year = DateTime.Now.Year;
+            Month = DateTime.Now.Month;
+            Kanryo = false;
+            Keyword = "";
+        }
+    }
+
 }

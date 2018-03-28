@@ -37,7 +37,7 @@
                         @Html.Label("month", "/", new { })
                         @Html.DropDownList("month", null, "", htmlAttributes: new { @class = "form-control dateTxt" })
                         @Html.Label("keyword", "キーワード:", new { @class = "control-label" })
-                        @Html.TextBox("keyword", "", new { @class = "form-control keyword" })
+                        @Html.TextBox("keyword", (string)ViewBag.keyword, new { @class = "form-control keyword" })
                         @Html.Label("kanryo", "完了分を含む:", new { @class = "control-label" })
                         @Html.CheckBox("kanryo")
                         <div class="pull-right">
