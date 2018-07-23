@@ -320,7 +320,7 @@ namespace QsAdmin.Controllers
                 + "   a.TransferName,"
                 + "   a.TaxWithholdingFlag"
                 + " order by"
-                + "   a.TransferName"
+                + "   a.CustomerId"
                 );
 
             return seikyus;
